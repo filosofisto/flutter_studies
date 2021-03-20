@@ -7,3 +7,5 @@ Projects
 - first_scaffold
 - first_gesture_detector
 - first_botton_navigator
+- first_float_action_button
+- bizz_card_app
