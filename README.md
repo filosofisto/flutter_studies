@@ -9,3 +9,5 @@ Projects
 - first_botton_navigator
 - first_float_action_button
 - bizz_card_app
+- inspire_me_app
+- tip_calculator_app
