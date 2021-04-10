@@ -11,3 +11,4 @@ Projects
 - bizz_card_app
 - inspire_me_app
 - tip_calculator_app
+- quiz_app
