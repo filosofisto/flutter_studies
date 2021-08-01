@@ -21,49 +21,25 @@ class MovieListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Movies"),
-        backgroundColor: Colors.blueGrey.shade900,
-      ),
-      backgroundColor: Colors.blueGrey.shade400,
-      body: ListView.builder(
-          itemCount: movieList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return movieCard(movieList[index], context);
-            // return Card(
-            //   color: Colors.white,
-            //   elevation: 4.5,
-            //   child: ListTile(
-            //     leading: CircleAvatar(
-            //       child: Container(
-            //         width: 200,
-            //         height: 200,
-            //         decoration: BoxDecoration(
-            //           image: DecorationImage(
-            //             image: NetworkImage(movieList[index].images[0]),
-            //             fit: BoxFit.cover
-            //           ),
-            //             color: Colors.blue,
-            //             borderRadius: BorderRadius.circular(13.9)),
-            //         child: null ,
-            //       ),
-            //     ),
-            //     title: Text(movieList[index].title),
-            //     subtitle: Text(movieList[index].genre),
-            //     trailing: Text("..."),
-            //     onTap: () {
-            //       Navigator.push(context,
-            //           MaterialPageRoute(builder: (context) => MovieListDetailView(movie: movieList[index],)));
-            //     },
-            //   ),
-            // );
-          }),
-    );
+        appBar: AppBar(
+          title: Text("Movies"),
+          backgroundColor: Colors.blueGrey.shade900,
+        ),
+        backgroundColor: Colors.blueGrey.shade400,
+        body: ListView.builder(
+            itemCount: movieList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Stack(children: <Widget>[
+                movieCard(movieList[index], context),
+                Positioned(top: 10.0, child: movieImage(movieList[index]))
+              ]);
+            }));
   }
 
   Widget movieCard(Movie movie, BuildContext context) {
     return InkWell(
       child: Container(
+        margin: EdgeInsets.only(left: 60.0),
         width: MediaQuery.of(context).size.width,
         height: 120.0,
         child: Card(
@@ -102,6 +78,17 @@ class MovieListView extends StatelessWidget {
                       movie: movie,
                     )));
       },
+    );
+  }
+
+  Widget movieImage(Movie movie) {
+    return Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+              image: NetworkImage(movie.images[0]), fit: BoxFit.cover)),
     );
   }
 }
