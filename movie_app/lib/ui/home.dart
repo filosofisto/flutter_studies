@@ -130,7 +130,9 @@ class MovieListDetailView extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          MovieDetailThumbnail(thumbnail: movie.images[0],)
+          MovieDetailThumbnail(
+            thumbnail: movie.images[0],
+          )
         ],
       ),
     );
@@ -156,8 +158,21 @@ class MovieDetailThumbnail extends StatelessWidget {
                   image: NetworkImage(thumbnail), fit: BoxFit.cover),
             ),
           ),
-          Icon(Icons.play_circle_outline, size: 110, color: Colors.white,)
+          Icon(
+            Icons.play_circle_outline,
+            size: 110,
+            color: Colors.white,
+          )
         ],
+      ),
+      Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+              colors: [Color(0x00f5f5f5), Color(0xfff5f5f5)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter),
+        ),
+        height: 80,
       )
     ]);
   }
