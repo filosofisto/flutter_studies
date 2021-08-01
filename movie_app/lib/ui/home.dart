@@ -136,7 +136,8 @@ class MovieListDetailView extends StatelessWidget {
           ),
           MovieDetailHeaderWithPoster(
             movie: movie,
-          )
+          ),
+          MovieDetailsCast(movie: movie,)
         ],
       ),
     );
@@ -252,6 +253,56 @@ class MovieDetailsHeader extends StatelessWidget {
               TextSpan(
                   text: "More...", style: TextStyle(color: Colors.indigoAccent))
             ]))
+      ],
+    );
+  }
+}
+
+class MovieDetailsCast extends StatelessWidget {
+  final Movie movie;
+
+  const MovieDetailsCast({Key key, this.movie}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        children: <Widget>[
+          MovieField(field: "Cast", value: movie.actors),
+          MovieField(field: "Directors", value: movie.director),
+          MovieField(field: "Awards", value: movie.awards,),
+          MovieField(field: "Country", value: movie.country,),
+          MovieField(field: "Language", value: movie.language,)
+        ],
+      ),
+    );
+  }
+}
+
+class MovieField extends StatelessWidget {
+  final String field;
+  final String value;
+
+  const MovieField({Key key, this.field, this.value}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(
+          "$field: ",
+          style: TextStyle(
+              color: Colors.black38, fontSize: 12, fontWeight: FontWeight.w300),
+        ),
+        Expanded(
+          child: Text(
+            "$value",
+            style: TextStyle(
+                color: Colors.black, fontSize: 12, fontWeight: FontWeight.w300),
+          ),
+        )
       ],
     );
   }
