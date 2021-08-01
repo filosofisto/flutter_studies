@@ -128,16 +128,37 @@ class MovieListDetailView extends StatelessWidget {
         title: Text(this.movie.title),
         backgroundColor: Colors.blueGrey.shade900,
       ),
-      body: Center(
-        child: Container(
-          child: RaisedButton(
-            child: Text("Go back"),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        ),
+      body: ListView(
+        children: <Widget>[
+          MovieDetailThumbnail(thumbnail: movie.images[0],)
+        ],
       ),
     );
+  }
+}
+
+class MovieDetailThumbnail extends StatelessWidget {
+  final String thumbnail;
+
+  const MovieDetailThumbnail({Key key, this.thumbnail}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(alignment: Alignment.bottomCenter, children: <Widget>[
+      Stack(
+        alignment: Alignment.bottomCenter,
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 190,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(thumbnail), fit: BoxFit.cover),
+            ),
+          ),
+          Icon(Icons.play_circle_outline, size: 110, color: Colors.white,)
+        ],
+      )
+    ]);
   }
 }
