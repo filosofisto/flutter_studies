@@ -12,3 +12,5 @@ Projects
 - inspire_me_app
 - tip_calculator_app
 - quiz_app
+- movie_app
+- simple_http
