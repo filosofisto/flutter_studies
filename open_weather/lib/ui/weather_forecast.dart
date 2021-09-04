@@ -38,7 +38,7 @@ class _WeatherForecastUIState extends State<WeatherForecastUI> {
                   return Column(
                     children: <Widget>[
                       midView(snapshot),
-                      // bottomView(snapshot, context)
+                      BottomView(snapshot: snapshot)
                     ],
                   );
                 } else {
