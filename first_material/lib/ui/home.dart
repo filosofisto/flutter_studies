@@ -7,14 +7,13 @@ class Home extends StatelessWidget {
       color: Colors.deepOrange,
       child: Center(
           child: Text(
-            "Hello Material",
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 24.3,
-                fontStyle: FontStyle.italic
-            ),
-          )),
+        "Hello Material",
+        textDirection: TextDirection.ltr,
+        style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 24.3,
+            fontStyle: FontStyle.italic),
+      )),
     );
   }
 }
