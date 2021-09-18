@@ -29,10 +29,9 @@ class QuizzPage extends StatefulWidget {
 }
 
 class _QuizzPageState extends State<QuizzPage> {
+  List<Widget> _score = [];
 
-  List<Widget> score = [];
-
-  List<Question> questions = [
+  List<Question> _questions = [
     Question('Pedro Alvarez Cabral discovered Brazil', true),
     Question('Java is an amazing computer language', true),
     Question('C++ generate binary code that is slow', false),
@@ -40,8 +39,8 @@ class _QuizzPageState extends State<QuizzPage> {
     Question('Java has more than 20 years of age', true)
   ];
 
-  int currentIndex = 0;
-  int correctAnswers = 0;
+  int _currentIndex = 0;
+  int _correctAnswers = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +52,7 @@ class _QuizzPageState extends State<QuizzPage> {
           flex: 5,
           child: Center(
             child: Text(
-              questionTextOrResult(),
+              _questionTextOrResult(),
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 25.0, color: Colors.white),
             ),
@@ -86,7 +85,7 @@ class _QuizzPageState extends State<QuizzPage> {
                     ),
                     onPressed: () {
                       setState(() {
-                        processAnswer(true);
+                        _processAnswer(true);
                       });
                     },
                     child:
@@ -124,7 +123,7 @@ class _QuizzPageState extends State<QuizzPage> {
                   ),
                   onPressed: () {
                     setState(() {
-                      processAnswer(false);
+                      _processAnswer(false);
                     });
                   },
                   child: Align(
@@ -135,36 +134,46 @@ class _QuizzPageState extends State<QuizzPage> {
           ),
         )),
         Row(
-          children: score,
+          children: _score,
         )
       ],
     );
   }
 
-  String questionTextOrResult() {
-    if (currentIndex < questions.length) {
-      return questions[currentIndex].text;
+  String _questionTextOrResult() {
+    if (_currentIndex < _questions.length) {
+      return _questions[_currentIndex].text;
     }
 
-    int perc = result();
+    int perc = _result();
 
     if (perc > 50) return 'Congrats, you got $perc%';
 
     return 'Sorry :(, you got only $perc%';
   }
 
-  int result() {
-    return (correctAnswers / questions.length * 100).round();
+  int _result() {
+    return (_correctAnswers / _questions.length * 100).round();
   }
 
-  void processAnswer(bool value) {
-    if (questions[currentIndex].correct == value) {
-      score.add(Icon(Icons.check, color: Colors.green,));
-      correctAnswers++;
-    } else {
-      score.add(Icon(Icons.close, color: Colors.red,));
+  void _processAnswer(bool value) {
+    if (_currentIndex >= _questions.length) {
+      return;
     }
 
-    currentIndex++;
+    if (_questions[_currentIndex].correct == value) {
+      _score.add(Icon(
+        Icons.check,
+        color: Colors.green,
+      ));
+      _correctAnswers++;
+    } else {
+      _score.add(Icon(
+        Icons.close,
+        color: Colors.red,
+      ));
+    }
+
+    _currentIndex++;
   }
 }
