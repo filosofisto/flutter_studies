@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tip_calculator_app/util/hexcolor.dart';
+import 'package:tip_calculator/util/hexcolor.dart';
 
 class BillSplitter extends StatefulWidget {
   @override
@@ -28,7 +28,7 @@ class _BillSplitterState extends State<BillSplitter> {
               height: 150,
               decoration: BoxDecoration(
                   color:
-                      _purple.withOpacity(0.1),
+                  _purple.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12.0)),
               child: Center(
                 child: Column(
@@ -66,10 +66,10 @@ class _BillSplitterState extends State<BillSplitter> {
                 children: <Widget>[
                   TextField(
                     keyboardType:
-                        TextInputType.numberWithOptions(decimal: true),
+                    TextInputType.numberWithOptions(decimal: true),
                     style: TextStyle(color: _purple),
                     decoration: InputDecoration(
-                        prefixText: "Bill Amount",
+                        prefixText: "Bill Amount: ",
                         prefixIcon: Icon(Icons.attach_money)),
                     onChanged: (String value) {
                       try {
