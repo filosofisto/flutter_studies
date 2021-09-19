@@ -1,15 +1,15 @@
+import 'package:bank/components/commun/input_numeric_ui.dart';
 import 'package:bank/model/transfer.dart';
-import 'package:bank/ui/input_numeric_ui.dart';
 import 'package:flutter/material.dart';
 
-class TransferFormUI extends StatefulWidget {
-  const TransferFormUI({Key? key}) : super(key: key);
+class TransferFormScreen extends StatefulWidget {
+  const TransferFormScreen({Key? key}) : super(key: key);
 
   @override
-  _TransferFormUIState createState() => _TransferFormUIState();
+  _TransferFormScreenState createState() => _TransferFormScreenState();
 }
 
-class _TransferFormUIState extends State<TransferFormUI> {
+class _TransferFormScreenState extends State<TransferFormScreen> {
 
   final TextEditingController _controllerAccount = TextEditingController();
   final TextEditingController _controllerValue = TextEditingController();

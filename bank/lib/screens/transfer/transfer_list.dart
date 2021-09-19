@@ -1,19 +1,18 @@
+import 'package:bank/components/transfer/transfer_ui.dart';
 import 'package:bank/model/transfer.dart';
-import 'package:bank/ui/tranfer_form_ui.dart';
-import 'package:bank/ui/transfer_ui.dart';
+import 'package:bank/screens/transfer/tranfer_form.dart';
 import 'package:flutter/material.dart';
 
-class TransferListUI extends StatefulWidget {
-  TransferListUI({Key? key}) : super(key: key);
+class TransferListScreen extends StatefulWidget {
+  TransferListScreen({Key? key}) : super(key: key);
 
   final List<Transfer> _list = [];
 
   @override
-  _TransferListUIState createState() => _TransferListUIState();
+  _TransferListScreenState createState() => _TransferListScreenState();
 }
 
-class _TransferListUIState extends State<TransferListUI> {
-
+class _TransferListScreenState extends State<TransferListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,14 +27,16 @@ class _TransferListUIState extends State<TransferListUI> {
             onPressed: () {
               final Future future =
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return TransferFormUI();
+                return TransferFormScreen();
               }));
 
-              future.then((transfer) => {
-                    if (transfer != null) {
-                      setState(() => widget._list.add(transfer))
-                    }
-                  });
+              future.then((transfer) => _updateList(transfer));
             }));
+  }
+
+  void _updateList(Transfer? transfer) {
+    if (transfer != null) {
+      setState(() => widget._list.add(transfer));
+    }
   }
 }
